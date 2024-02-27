@@ -1,0 +1,29 @@
+name: International Women's Day Celebration
+
+# This workflow is manually triggered and accepts inputs
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Your Name'
+        required: true
+        default: 'World'
+      message:
+        description: 'Your Message'
+        required: false
+        default: 'Happy International Women s Day! 🌺'
+
+jobs:
+  celebrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📢 Greet Participant
+        run: echo "Hello, ${{ github.event.inputs.name }}! 👋"
+      
+      - name: 💬 Display Message
+        run: echo "${{ github.event.inputs.message }} 💐"
+      
+      - name: 🎉 Celebrate
+        run: |
+          echo "Thank you for participating in our workshop! 🎓"
+          echo "Let's empower and celebrate women in tech together. 🚀"
