@@ -1,0 +1,12 @@
+name: Call Reusable CI Workflow
+
+on:
+    workflow_dispatch: # This allows the workflow to be manually triggered
+
+jobs:
+  call-reuse:
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      node_version: '18'
+      script: 'test'
+    secrets: inherit
