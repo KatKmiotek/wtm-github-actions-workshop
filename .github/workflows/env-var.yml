@@ -1,0 +1,27 @@
+name: Node.js CI with Environment Variable (Manual Trigger)
+
+on:
+  workflow_dispatch: # This enables manual triggering of the workflow
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    # Define environment variable for the whole job
+    env:
+      BASE_URL: https://example.com/api
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js 18
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+      # Your tests can access the BASE_URL using process.env.BASE_URL
