@@ -1,0 +1,20 @@
+name: Pull Request Github Context
+
+on:
+  pull_request:
+     branches: main
+
+jobs:
+  inspect-pr:
+    runs-on: ubuntu-latest
+    steps:
+       - name: Check out code
+         uses: actions/checkout@v4
+      
+       - name: Print Pull Request Information
+         run: |
+            echo "PR Number: ${{ github.event.pull_request.number }}"
+            echo "PR Title: ${{ github.event.pull_request.title }}"
+            echo "PR Body: ${{ github.event.pull_request.body }}"
+            echo "PR State: ${{ github.event.pull_request.state }}"
+            echo "Created by: ${{ github.event.pull_request.user.login }}"
