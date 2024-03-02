@@ -1,0 +1,29 @@
+name: Manual Test Workflow with artifacts
+
+# Triggers the workflow manually from the GitHub UI
+on: workflow_dispatch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run tests
+      run: npm run test
+      
+    - name: Upload Test Report as Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-report
+        path: ./index.html
